@@ -10,10 +10,9 @@
 
   .photo-feed {
     max-width: 581px;
-    margin: 0 auto 48px;
+    margin-bottom: 48px;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 20px 17px;
   }
 }
 

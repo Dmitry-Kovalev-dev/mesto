@@ -1,5 +1,5 @@
 .popup__form-inputs {
-  font-family: 'Inter';
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
   color: #000;
   display: flex;
   flex-direction: column;
@@ -12,6 +12,6 @@
 @media screen and (max-width: 767px) {
 
   .popup__form-inputs {
-    margin: 0 0 45px;
+    margin-bottom: 45px;
   }
 }

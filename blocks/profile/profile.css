@@ -10,6 +10,6 @@
 
   .profile {
     flex-direction: column;
-    margin: 0 auto 36px;
+    margin-bottom: 36px;
   }
 }
