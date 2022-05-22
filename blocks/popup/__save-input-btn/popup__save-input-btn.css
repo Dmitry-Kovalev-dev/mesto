@@ -13,6 +13,7 @@
   color: #fff;
   border-radius: 2px;
   transition: filter 0.2s linear, opacity 0.2s linear;
+  cursor: pointer;
 }
 
 .popup__save-input-btn:hover {
