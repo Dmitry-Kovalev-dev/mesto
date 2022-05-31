@@ -29,48 +29,6 @@
     </section>
 
     <section class="photo-feed">
-      <article class="post">
-        <img src="./images/miass.jpg" alt="горнолыжный курорт Солнечная Долина" class="post__img">
-        <div class="post__info">
-          <h2 class="post__title">Солнечная Долина</h2>
-          <button class="post__like-btn" type="button"></button>
-        </div>
-      </article>
-      <article class="post">
-        <img src="./images/arhyz.jpg" alt="горнолыжный курорт Архыз" class="post__img">
-        <div class="post__info">
-          <h2 class="post__title">Архыз</h2>
-          <button class="post__like-btn" type="button"></button>
-        </div>
-      </article>
-      <article class="post">
-        <img src="./images/adzh.jpg" alt="горнолыжный курорт Аджигардак" class="post__img">
-        <div class="post__info">
-          <h2 class="post__title">Аджигардак</h2>
-          <button class="post__like-btn" type="button"></button>
-        </div>
-      </article>
-      <article class="post">
-        <img src="./images/rosa.jpg" alt="горнолыжный курорт Роза Хутор" class="post__img">
-        <div class="post__info">
-          <h2 class="post__title">Роза Хутор</h2>
-          <button class="post__like-btn" type="button"></button>
-        </div>
-      </article>
-      <article class="post">
-        <img src="./images/gubaha.jpg" alt="горнолыжный курорт Губаха" class="post__img">
-        <div class="post__info">
-          <h2 class="post__title">Губаха</h2>
-          <button class="post__like-btn" type="button"></button>
-        </div>
-      </article>
-      <article class="post">
-        <img src="./images/abzakovo.jpg" alt="горнолыжный курорт Мраткино" class="post__img">
-        <div class="post__info">
-          <h2 class="post__title">Мраткино</h2>
-          <button class="post__like-btn" type="button"></button>
-        </div>
-      </article>
     </section>
   </main>
 
@@ -78,10 +36,10 @@
     <p class="footer__text">&copy; 2022 Mesto Russia</p>
   </footer>
 
-  <div class="popup">
+  <div class="popup popup_type_edit">
     <div class="popup__container">
       <button class="popup__close-btn" type="button"></button>
-      <form action="#" class="popup__form" name="profileform">
+      <form action="#" class="popup__form popup__form_type_profile-edit" name="profileform">
         <fieldset class="popup__form-inputs">
           <legend class="popup__title">Редактировать профиль</legend>
           <input type="text" class="popup__input popup__input_type_name" name="name" placeholder="Имя" value="">
@@ -91,6 +49,40 @@
       </form>
     </div>
   </div>
+
+  <div class="popup popup_type_add">
+    <div class="popup__container">
+      <button class="popup__close-btn" type="button"></button>
+      <form action="#" class="popup__form popup__form_type_add-post" name="addform">
+        <fieldset class="popup__form-inputs">
+          <legend class="popup__title">Новое место</legend>
+          <input type="text" class="popup__input popup__input_type_place" name="place" placeholder="Название" value="">
+          <input type="text" class="popup__input popup__input_type_link" name="link" placeholder="Ссылка на картинку"
+            value="">
+        </fieldset>
+        <button type="submit" class="popup__save-input-btn">Создать</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="popup popup_type_img">
+    <div class="popup__img-container">
+      <button class="popup__close-btn" type="button"></button>
+      <img src="" alt="" class="popup__zoom-img">
+      <p class="popup__caption">Hello</p>
+    </div>
+  </div>
+
+  <template id="post">
+    <article class="post">
+      <img src="" alt="" class="post__img">
+      <button class="post__trash-btn" type="button"></button>
+      <div class="post__info">
+        <h2 class="post__title"></h2>
+        <button class="post__like-btn" type="button"></button>
+      </div>
+    </article>
+  </template>
 
   <script src="./scripts/index.js"></script>
 </body>
