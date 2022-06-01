@@ -29,25 +29,6 @@
 @import url(../blocks/popup/__input/popup__input.css);
 @import url(../blocks/popup/__title/popup__title.css);
 @import url(../blocks/popup/__save-input-btn/popup__save-input-btn.css);
-
-.popup__img-container {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-}
-
-.popup__zoom-img {
-  max-width: 75vw;
-  max-height: 75vh;
-  object-fit: cover;
-  object-position: center center;
-}
-
-.popup__caption {
-  font-family: 'Inter', Arial, Helvetica, sans-serif;
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 1.25;
-  padding: 0;
-  margin: 10px 0 0;
-}
+@import url(../blocks/popup/__img-container/popup__img-container.css);
+@import url(../blocks/popup/__zoom-img/popup__zoom-img.css);
+@import url(../blocks/popup/__caption/popup__caption.css);
