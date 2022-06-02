@@ -39,11 +39,11 @@
   <div class="popup popup_type_edit">
     <div class="popup__container">
       <button class="popup__close-btn" type="button"></button>
+      <h2 class="popup__title">Редактировать профиль</h2>
       <form action="#" class="popup__form popup__form_type_profile-edit" name="profileform">
         <fieldset class="popup__form-inputs">
-          <legend class="popup__title">Редактировать профиль</legend>
-          <input type="text" class="popup__input popup__input_type_name" name="name" placeholder="Имя" value="">
-          <input type="text" class="popup__input popup__input_type_job" name="job" placeholder="О себе" value="">
+          <input type="text" class="popup__input popup__input_type_name" name="name" placeholder="Имя" value="" required>
+          <input type="text" class="popup__input popup__input_type_job" name="job" placeholder="О себе" value="" required>
         </fieldset>
         <button type="submit" class="popup__save-input-btn">Сохранить</button>
       </form>
@@ -53,12 +53,12 @@
   <div class="popup popup_type_add">
     <div class="popup__container">
       <button class="popup__close-btn" type="button"></button>
+      <h2 class="popup__title">Новое место</h2>
       <form action="#" class="popup__form popup__form_type_add-post" name="addform">
         <fieldset class="popup__form-inputs">
-          <legend class="popup__title">Новое место</legend>
-          <input type="text" class="popup__input popup__input_type_place" name="place" placeholder="Название" value="">
-          <input type="text" class="popup__input popup__input_type_link" name="link" placeholder="Ссылка на картинку"
-            value="">
+          <input type="text" class="popup__input popup__input_type_place" name="place" placeholder="Название" value="" required>
+          <input type="url" class="popup__input popup__input_type_link" name="link" placeholder="Ссылка на картинку"
+            value="" required>
         </fieldset>
         <button type="submit" class="popup__save-input-btn">Создать</button>
       </form>
@@ -68,14 +68,14 @@
   <div class="popup popup_type_img">
     <div class="popup__img-container">
       <button class="popup__close-btn" type="button"></button>
-      <img src=" " alt="" class="popup__zoom-img">
-      <p class="popup__caption">Hello</p>
+      <img src="#" alt="" class="popup__zoom-img">
+      <p class="popup__caption"></p>
     </div>
   </div>
 
   <template id="post">
     <article class="post">
-      <img src=" " alt="" class="post__img">
+      <img src="#" alt="" class="post__img">
       <button class="post__trash-btn" type="button"></button>
       <div class="post__info">
         <h2 class="post__title"></h2>
@@ -84,6 +84,7 @@
     </article>
   </template>
 
+  <script src="./scripts/initialCard.js"></script>
   <script src="./scripts/index.js"></script>
 </body>
 
