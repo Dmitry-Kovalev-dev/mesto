@@ -21,6 +21,15 @@
   opacity: 0.8;
 }
 
+.popup__save-input-btn:disabled {
+  opacity: 0.2;
+  box-sizing: border-box;
+  border: 1px solid #000;
+  color: black;
+  background-color: #e5e5e5;
+  cursor: not-allowed;
+}
+
 @media screen and (max-width: 767px) {
 
   .popup__save-input-btn {

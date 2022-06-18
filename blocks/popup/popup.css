@@ -13,4 +13,5 @@
   transform: scale(0);
   opacity: 0;
   transition: transform 0s linear 0.3s, opacity 0.3s linear;
+  cursor: pointer;
 }

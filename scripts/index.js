@@ -1,31 +1,8 @@
-const editBtn = document.querySelector('.profile__edit-btn');
-const addPostBtn = document.querySelector('.profile__add-btn');
-const profileName = document.querySelector('.profile__name');
-const profileJob = document.querySelector('.profile__about');
-
-const popupProfile = document.querySelector('.popup_type_edit');
-const formProfileElement = popupProfile.querySelector('.popup__form_type_profile-edit');
-const inputName = formProfileElement.querySelector('.popup__input_type_name');
-const inputJob = formProfileElement.querySelector('.popup__input_type_job');
-
-const popupAddPost = document.querySelector('.popup_type_add');
-const fomrAddElement = popupAddPost.querySelector('.popup__form_type_add-post');
-const inputPlaceName = fomrAddElement.querySelector('.popup__input_type_place');
-const inputLink = fomrAddElement.querySelector('.popup__input_type_link');
-
-const popupZoomImage = document.querySelector('.popup_type_img');
-const imageInPopup = popupZoomImage.querySelector('.popup__zoom-img');
-const captionInPopup = popupZoomImage.querySelector('.popup__caption');
-
-const closeButtons = document.querySelectorAll('.popup__close-btn');
-
-const photoFeed = document.querySelector('.photo-feed');
-
-const postTemplate = document.querySelector('#post').content;
-
 //---------------------open-popups---------------------------------------
 const openPopup = (popupElement) => {
   popupElement.classList.add('popup_open');
+  document.addEventListener('keydown', handlePressEsc);
+  document.addEventListener('mousedown', handleClickOverlayPopupClose);
 }
 
 editBtn.addEventListener('click', function () {
@@ -42,6 +19,8 @@ addPostBtn.addEventListener('click', function () {
 //-------------------close-popups---------------------------------------
 const closePopup = (popupElement) => {
   popupElement.classList.remove('popup_open');
+  document.removeEventListener('keydown', handlePressEsc);
+  document.removeEventListener('mousedown', handleClickOverlayPopupClose);
 };
 
 const handleClickClosePopup = (evt) => {
@@ -51,6 +30,18 @@ const handleClickClosePopup = (evt) => {
 closeButtons.forEach(button => {
   button.addEventListener('click', handleClickClosePopup);
 });
+
+const handlePressEsc = (evt) => {
+  if (evt.key === 'Escape') {
+    closePopup(document.querySelector('.popup_open'));
+  }
+};
+
+const handleClickOverlayPopupClose = (evt) => {
+  if (Array.from(evt.target.classList).some(function (cl) { return cl === 'popup'; })) {
+    closePopup(evt.target);
+  }
+};
 
 //-------------------edit-profile-submit--------------------------------
 const handleFormProfileSubmit = (evt) => {
