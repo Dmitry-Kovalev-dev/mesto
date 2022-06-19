@@ -14,6 +14,7 @@ editBtn.addEventListener('click', function () {
 addPostBtn.addEventListener('click', function () {
   openPopup(popupAddPost);
   fomrAddElement.reset();
+  enableValidation(selectors);
 });
 
 //-------------------close-popups---------------------------------------
@@ -38,7 +39,7 @@ const handlePressEsc = (evt) => {
 };
 
 const handleClickOverlayPopupClose = (evt) => {
-  if (Array.from(evt.target.classList).some(function (cl) { return cl === 'popup'; })) {
+  if (evt.target.classList.contains('popup')) {
     closePopup(evt.target);
   }
 };
