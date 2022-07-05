@@ -34,7 +34,7 @@ export class Card {
   };
 
   _handleClickTrashButton = () => {
-    this._element.querySelector('.post__trash-btn').closest('.post').remove();
+    this._element.remove();
   };
 
   _setEventListeners() {

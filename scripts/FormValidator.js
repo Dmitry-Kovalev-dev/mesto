@@ -1,24 +1,23 @@
 export class FormValidator {
-  constructor(selectors, formElement) {
-    this._formSelector = selectors.formSelector;
-    this._inputSelector = selectors.inputSelector;
-    this._submitButtonSelector = selectors.submitButtonSelector;
-    this._inactiveButtonClass = selectors.inactiveButtonClass;
-    this._inputErrorClass = selectors.inputErrorClass;
-    this._errorClass = selectors.errorClass;
+  constructor(validationConfig, formElement) {
+    this._inputSelector = validationConfig.inputSelector;
+    this._submitButtonSelector = validationConfig.submitButtonSelector;
+    this._inputErrorClass = validationConfig.inputErrorClass;
+    this._errorActiveClass = validationConfig.errorActiveClass;
+    this._errorSelector = validationConfig.errorSelector;
     this._formElement = formElement;
   };
 
   _showInputError(errorEl, inputElement, errorMessage) {
     inputElement.classList.add(this._inputErrorClass);
     errorEl.textContent = errorMessage;
-    errorEl.classList.add(this._errorClass);
+    errorEl.classList.add(this._errorActiveClass);
   };
 
   _hideInputError(errorEl, inputElement) {
     inputElement.classList.remove(this._inputErrorClass);
     errorEl.textContent = '';
-    errorEl.classList.remove(this._errorClass);
+    errorEl.classList.remove(this._errorActiveClass);
   };
 
   _isValid(formElement, inputElement) {
@@ -52,6 +51,25 @@ export class FormValidator {
         this._setSubmitButtonState(inputList, buttonSubmitElement);
       });
     });
+  };
+
+  hideInputErrorAfterClose() {
+    const inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
+    const errorList = Array.from(this._formElement.querySelectorAll(this._errorSelector))
+    inputList.forEach((input) => {
+      if (input.classList.contains(this._inputErrorClass)) {
+        input.classList.remove(this._inputErrorClass);
+      }
+    });
+    errorList.forEach((error) => {
+      if (error.classList.contains(this._errorActiveClass)) {
+        error.classList.remove(this._errorActiveClass);
+      }
+    });
+  };
+
+  disableSubmitButton() {
+    this._formElement.querySelector(this._submitButtonSelector).disabled = true;
   };
 
   enableValidation() {
