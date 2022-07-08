@@ -53,7 +53,7 @@ export class FormValidator {
     });
   };
 
-  hideInputErrorAfterClose() {
+  hideInputErrors() {
     const inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
     const errorList = Array.from(this._formElement.querySelectorAll(this._errorSelector))
     inputList.forEach((input) => {

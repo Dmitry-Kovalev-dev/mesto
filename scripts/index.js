@@ -45,13 +45,13 @@ editBtn.addEventListener('click', () => {
   openPopup(popupProfile);
   inputName.value = profileName.textContent;
   inputJob.value = profileJob.textContent;
-  new FormValidator(validationConfig, formProfileElement).hideInputErrorAfterClose();
+  editFormValidator.hideInputErrors();
 });
 
 addPostBtn.addEventListener('click', () => {
   openPopup(popupAddPost);
   formAddElement.reset();
-  new FormValidator(validationConfig, formAddElement).hideInputErrorAfterClose();
+  addFormValidator.hideInputErrors();
 });
 
 /** Closing popups */
@@ -118,13 +118,14 @@ const handleFormAddSubmit = (evt) => {
   photoFeed.prepend(cardElementByPopup);
   closePopup(popupAddPost);
   formAddElement.reset();
-  new FormValidator(validationConfig, formAddElement).disableSubmitButton();
+  addFormValidator.disableSubmitButton();
 };
 
 formAddElement.addEventListener('submit', handleFormAddSubmit);
 
-/** Enable validation all forms */
-formsArr.forEach((form) => {
-  const validation = new FormValidator(validationConfig, form)
-  validation.enableValidation();
-});
+/** Enable validation */
+const editFormValidator = new FormValidator(validationConfig, formProfileElement);
+editFormValidator.enableValidation();
+
+const addFormValidator = new FormValidator(validationConfig, formAddElement);
+addFormValidator.enableValidation();
