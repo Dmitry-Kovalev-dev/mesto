@@ -29,6 +29,7 @@
 @import url(../blocks/popup/__input/popup__input.css);
 @import url(../blocks/popup/__title/popup__title.css);
 @import url(../blocks/popup/__save-input-btn/popup__save-input-btn.css);
+@import url(../blocks/popup/_type/popup_type_img.css);
 @import url(../blocks/popup/__img-container/popup__img-container.css);
 @import url(../blocks/popup/__zoom-img/popup__zoom-img.css);
 @import url(../blocks/popup/__caption/popup__caption.css);

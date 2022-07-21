@@ -1,5 +1,4 @@
 import './index.css';
-
 import {
   editBtn, addPostBtn, formProfileElement,
   formAddElement, cardTemplateId, containerCardsSelector,
@@ -13,11 +12,18 @@ import Section from "../components/Section.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserIinfo.js";
 
-/** Creating popup "Add Card" from class PopupWithForm */
-const handleSubmitAddForm = (values) => {
+const createNewCardElement = (values) => {
   const card = new Card(values, handleCardClick, cardTemplateId);
   const cardElement = card.createPostCard();
-  rendered.addItem(cardElement);
+  return cardElement;
+}
+
+/** Creating popup "Add Card" from class PopupWithForm */
+
+const handleSubmitAddForm = (values) => {
+  const postCard = createNewCardElement(values);
+  rendered.addItem(postCard);
+  popupFormAddCard.close();
 };
 
 const popupFormAddCard = new PopupWithForm(popupAddSelector, handleSubmitAddForm);
@@ -34,6 +40,7 @@ const userInfo = new UserInfo(userProfileConfig);
 
 const handleSubmitProfileForm = (values) => {
   userInfo.setUserInfo(values);
+  popupFormEditProfile.close();
 };
 
 const popupFormEditProfile = new PopupWithForm(popupEditSelector, handleSubmitProfileForm);
@@ -58,9 +65,8 @@ const handleCardClick = (link, title) => {
 /** Rendering initial cards*/
 const rendered = new Section({
   items: initialCards, renderer: (item) => {
-    const card = new Card(item, handleCardClick, cardTemplateId);
-    const cardElement = card.createPostCard();
-    rendered.addItem(cardElement);
+    const postCard = createNewCardElement(item);
+    rendered.addItem(postCard);
   }
 }, containerCardsSelector);
 
@@ -72,4 +78,3 @@ editFormValidator.enableValidation();
 
 const addFormValidator = new FormValidator(validationConfig, formAddElement);
 addFormValidator.enableValidation();
-

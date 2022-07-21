@@ -34,6 +34,7 @@ export default class Card {
 
   _handleClickTrashButton = () => {
     this._element.remove();
+    this._element = null;
   };
 
   _setEventListeners() {
