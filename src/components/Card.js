@@ -1,9 +1,14 @@
 export default class Card {
-  constructor({name, link}, handleCardClick, selector) {
+  constructor({ name, link, owner, _id }, handleCardClick, handleTrashButtonClick, handleClickLikeButton, selector, userId) {
     this._name = name;
     this._link = link;
+    this._owner = owner;
+    this._id = _id;
+    this._userId = userId;
     this._cardSelector = selector;
     this._handleCardClick = handleCardClick;
+    this._handleTrashButtonClick = handleTrashButtonClick;
+    this._handleClickLikeButton = handleClickLikeButton;
   };
 
   _getTemplate() {
@@ -12,7 +17,6 @@ export default class Card {
       .content
       .querySelector('.post')
       .cloneNode(true);
-
     return this._cardElement;
   };
 
@@ -22,28 +26,42 @@ export default class Card {
     this._postImg.src = this._link;
     this._postImg.alt = this._name;
     this._element.querySelector('.post__title').textContent = this._name;
+    if (this._userId != this._owner._id) {
+      this._element.querySelector('.post__trash-btn').style.display = 'none';
+    };
     this._setEventListeners();
-
+    this._likeBtn = this._element.querySelector('.post__like-btn');
     return this._element;
   };
 
+  setLikeCount({ likes }) {
+    this._likes = likes;
+    this._element.querySelector('.post__like-count').textContent = this._likes.length;
+    this._idLikes = [];
+    this._likes.forEach(like => {
+      this._idLikes.push(like._id);
+    })
+    if (this._idLikes.includes(this._userId)) {
+      this._likeBtn.classList.add('post__like-btn_active')
+    }
+  }
 
-  _handleClickLikeButton() {
-    this._element.querySelector('.post__like-btn').classList.toggle('post__like-btn_active');
-  };
-
-  _handleClickTrashButton = () => {
-    this._element.remove();
-    this._element = null;
+  _setLikeStatus() {
+    if (this._likeBtn.classList.contains('post__like-btn_active')) {
+      this._handleClickLikeButton(this._id, 'DELETE');
+    } else {
+      this._handleClickLikeButton(this._id, 'PUT');
+    }
+    this._likeBtn.classList.toggle('post__like-btn_active');
   };
 
   _setEventListeners() {
     this._element.querySelector('.post__like-btn').addEventListener('click', () => {
-      this._handleClickLikeButton();
+      this._setLikeStatus();
     });
 
     this._element.querySelector('.post__trash-btn').addEventListener('click', () => {
-      this._handleClickTrashButton();
+      this._handleTrashButtonClick(this._element, this._id);
     });
 
     this._postImg.addEventListener('click', () => {

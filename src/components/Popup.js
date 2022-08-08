@@ -15,6 +15,11 @@ export default class Popup {
     document.removeEventListener('mousedown', this._handleClickOverlayPopupClose.bind(this));
   }
 
+  getButton() {
+    this._submitButton = this._popupElement.querySelector('.popup__save-input-btn')
+    return this._submitButton;
+  }
+
   _handleEscClose(evt) {
     if (evt.key === 'Escape') {
       this.close();
