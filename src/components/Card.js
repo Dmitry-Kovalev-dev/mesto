@@ -48,11 +48,19 @@ export default class Card {
 
   _setLikeStatus() {
     if (this._likeBtn.classList.contains('post__like-btn_active')) {
-      this._handleClickLikeButton(this._id, 'DELETE');
+      this._handleClickLikeButton(this._id, 'DELETE')
+        .then(res => {
+          this.setLikeCount(res);
+          this._likeBtn.classList.remove('post__like-btn_active');
+        })
+        .catch(err => console.log(err))
     } else {
-      this._handleClickLikeButton(this._id, 'PUT');
+      this._handleClickLikeButton(this._id, 'PUT')
+        .then(res => {
+          this.setLikeCount(res);
+        })
+        .catch(err => console.log(err))
     }
-    this._likeBtn.classList.toggle('post__like-btn_active');
   };
 
   _setEventListeners() {

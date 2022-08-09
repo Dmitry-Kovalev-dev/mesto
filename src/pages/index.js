@@ -36,28 +36,19 @@ const rendered = new Section({
 }, containerCardsSelector);
 
 /** GETTING INITIAL INFO */
-api.getInitialCard()
-  .then((cards) => {
+Promise.all([api.getProfileInfo(), api.getInitialCard()])
+  .then(([user, cards]) => {
+    userInfo.setUserInfo(user);
+    userInfo.getUserAvatar(user);
+    userId = user._id;
     rendered.renderItems(cards);
-  })
-  .catch(err => console.log(err));
-
-api.getProfileInfo()
-  .then(data => {
-    userInfo.setUserInfo(data);
-    userInfo.getUserAvatar(data);
-    userId = data._id;
   })
   .catch(err => console.log(err));
 
 /** CREATING NEW CARD */
 const createNewCardElement = (values) => {
   const handleClickLikeButton = (id, method) => {
-    api.setLikeStatus(id, method)
-      .then(res => {
-        card.setLikeCount(res);
-      })
-      .catch(err => console.log(err))
+    return api.setLikeStatus(id, method);
   };
 
   const card = new Card(values, handleCardClick, handleClickTrashButton, handleClickLikeButton, cardTemplateId, userId);
@@ -73,11 +64,11 @@ const handleSubmitAddForm = (values) => {
     .then(res => {
       const postCard = createNewCardElement(res);
       rendered.addItem(postCard);
+      popupFormAddCard.close();
     })
     .catch(err => console.log(err))
     .finally(() => {
-      renderLoading(false, buttonFormAddCard)
-      popupFormAddCard.close()
+      renderLoading(false, buttonFormAddCard);
     })
 };
 
@@ -97,11 +88,11 @@ const handleSubmitEditAvatarForm = (values) => {
   api.editAvatar(values)
     .then(res => {
       userInfo.getUserAvatar(res);
+      popupFormEditAvatar.close();
     })
     .catch(err => console.log(err))
     .finally(() => {
       renderLoading(false, buttonFormEditAvatar);
-      popupFormEditAvatar.close();
     })
 };
 
@@ -121,11 +112,11 @@ const handleSubmitProfileForm = (values) => {
   api.editProfile(values)
     .then(res => {
       userInfo.setUserInfo(res);
+      popupFormEditProfile.close();
     })
     .catch(err => console.log(err))
     .finally(() => {
-      renderLoading(false, buttonFormEditProfile)
-      popupFormEditProfile.close();
+      renderLoading(false, buttonFormEditProfile);
     })
 };
 
@@ -161,11 +152,11 @@ const handleClickDeleteCard = (card, id) => {
     .then(() => {
       card.remove();
       card = null;
+      popupDeleteCard.close();
     })
     .catch(err => console.log(err))
     .finally(() => {
       renderLoading(false, buttonDeleteCardSubmit);
-      popupDeleteCard.close();
     })
 };
 
@@ -182,6 +173,3 @@ addFormValidator.enableValidation();
 
 const editAvatarFormValidator = new FormValidator(validationConfig, formEditAvatarElement);
 editAvatarFormValidator.enableValidation();
-
-
-
